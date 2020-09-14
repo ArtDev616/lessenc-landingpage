@@ -1,0 +1,102 @@
+@import "../shared";
+
+/// basic variables in Residential
+$widget-gallery-h1-font-size: 2.4rem;
+$widget-gallery-p-font-size: 0.8rem;
+$widget-figcaption-h1-font-size: 3.2rem;
+$widget-figcaption-p-font-size: 1.6rem;
+$widget-fig-font-family: Helvetica;
+$widget-fig-line-spacing: 4rem;
+$widget-detail-img-width: 30rem;
+$widget-text-primary-color: #363637;
+$widget-text-secondary-color: #aaaeb8;
+
+.ProjectsTimelineWidget {
+  section {
+    padding-bottom: 92px;
+    .ProjectGalleryFigure {
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+      font-family: $widget-fig-font-family;
+      @include respond-to("iPad") {
+        flex-direction: column-reverse !important;
+      }
+      .image-gallery {
+        flex: 1;
+      }
+      .GalleryPhotoCaption {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .GalleryTestimonialTextWidget {
+          font-family: $widget-fig-font-family;
+          font-size: $widget-gallery-h1-font-size;
+          font-weight: 400;
+          font-style: italic;
+          font-size: 1.25rem;
+          color: #737783;
+          position: relative;
+          margin: 0;
+          padding: 36px;
+          &::after {
+            content: '“';
+            position: absolute;
+            color: #FEE6D6;
+            top: 0;
+            left: 0;
+            font-size: 3rem;
+          }
+          &::before {
+            content: '”';
+            position: absolute;
+            z-index: 10;
+            color: #FEE6D6;
+            bottom: 0;
+            right: 0;
+            font-size: 3rem;
+          }
+          cite {
+            display: flex;
+            font-weight: 700;
+            font-size: 1.2rem;
+            font-style: normal;
+            justify-content: flex-end;
+            margin-top: 24px;
+            color: $widget-text-primary-color;
+            @include respond-to("iPad") {
+              justify-content: flex-start;
+              margin-top: 60px;
+            }
+          }
+        }
+      }
+    }
+    &:nth-child(odd) {
+      .ProjectGalleryFigure {
+        flex-direction: row;
+        .GalleryPhotoCaption {
+          margin: 0 60px 0 120px;
+        }
+        .image-gallery {
+          margin: 0 120px 0 60px;
+          @include respond-to("iPad") {
+            margin: 0 60px 0 120px;
+          }
+        }
+      }
+    }
+    &:nth-child(even) {
+      .ProjectGalleryFigure {
+        flex-direction: row-reverse;
+        .GalleryPhotoCaption {
+          margin: 0 120px 0 60px;
+        }
+        .image-gallery {
+          margin: 0 60px 0 120px;
+        }
+      }
+    }
+  }
+}

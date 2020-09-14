@@ -1,0 +1,135 @@
+@import "../shared";
+
+/// basic variables in Residential
+$home-fig-font-family: Helvetica;
+$widget-text-primary-color: #363637;
+$widget-text-secondary-color: #969EAC;
+
+.ProjectsTimelineWidget {
+  &:after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: lightgray;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    @include respond-to("iPad") {
+      left: 5%;
+      width: 2px;
+    }
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    z-index: 10;
+    border-radius: 12px;
+    background-color: lightgray;
+    bottom: 0;
+    left: 49.5%;
+    @include respond-to("large") {
+      left: 49.3%;
+    }
+    @include respond-to("medium") {
+      left: 49.2%;
+    }
+    @include respond-to("handle") {
+      left: 48.9%;
+    }
+    @include respond-to("iPad") {
+      left: 4.2%;
+      width: 14px;
+      height: 14px;
+      z-index: 10;
+      border-radius: 8px;
+    }
+    @include respond-to("iPhone6") {
+      left: 3.2%;
+    }
+  }
+}
+
+.ProjectGalleryWidget {
+  position: relative;
+  .ProjectName {
+    text-align: center;
+    font-family: $home-fig-font-family;
+    font-size: 1.25rem;
+    color: $widget-text-secondary-color;
+    @include respond-to("iPad") {
+      text-align: left;
+    }
+  }
+  .ProjectDate {
+    text-align: center;
+    font-family: $home-fig-font-family;
+    font-size: 1.4rem;
+    color: $widget-text-primary-color;
+    @include respond-to("iPad") {
+      text-align: left;
+    }
+  }
+  &:nth-child(even) {
+    .ProjectName {
+      margin-left: -250px;
+      @include respond-to("iPad") {
+        margin-left: 120px;
+      }
+    }
+    .ProjectDate {
+      margin-left: -260px;
+      @include respond-to("iPad") {
+        margin-left: 120px;
+      }
+    }
+  }
+  &:nth-child(odd) {
+    .ProjectName {
+      margin-left: 220px;
+      @include respond-to("iPad") {
+        margin-left: 120px;
+      }
+    }
+    .ProjectDate {
+      margin-left: 230px;
+      @include respond-to("iPad") {
+        margin-left: 120px;
+      }
+    }
+  }
+  &::after {
+    background-color: lightsalmon;
+    content: "";
+    display: block;
+    position: absolute; 
+    left: 49.5%;
+    z-index: 10;
+    top: 0px;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 0px 10px rgba(123,123,123,0.3);
+    margin-right: 12px;
+    @include respond-to("large") {
+      left: 49.4%;
+    }
+    @include respond-to("medium") {
+      left: 49.25%;
+    }
+    @include respond-to("handle") {
+      left: 48.9%;
+    }
+    @include respond-to("iPad") {
+      left: 4.2%;
+      width: 14px;
+      height: 14px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 0px 8px rgba(123,123,123,0.3);
+    }
+    @include respond-to("iPhone6") {
+      left: 3.2%;
+    }
+  }
+}

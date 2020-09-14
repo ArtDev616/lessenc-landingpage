@@ -1,0 +1,211 @@
+@import "../../shared";
+
+///header variables...
+$header-menu-font-family: Helvetica;
+$header-menu-font-size: 1rem;
+$header-menu-letter-spacing: 2.48px;
+$header-menu-color: $black;
+
+$header-phone-font-family: SFNSDisplay;
+$header-phone-font-size: 23px;
+$header-phone-letter-spacing: 2.37px;
+$header-phone-color: $orange;
+
+$header-margin-top: 2%;
+$header-margin-menu-and-phone: 3%;
+$header-height: 10%;
+
+.SiteHeader {
+  padding-top: 2%;
+  padding-bottom: 1%;
+
+  z-index: map-get($z-indexes, "front");
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: $header-menu-color;
+
+  /// when menu button clicked, would apply these styles
+  #menu:target {
+    top: -10rem;
+    bottom: unset;
+    transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+    transform: translateY(10rem);
+    box-shadow: -4px 7px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /// menu modal styles
+  .Menu {
+    position: absolute;
+    background: #fff;
+    color: black;
+    width: 100vw;
+    left: 0%;
+    bottom: 100%;
+    z-index: map-get($map: $z-indexes, $key: "front");
+    flex-direction: column;
+
+    .MenuHeader {
+      padding: 5%;
+      display: flex;
+      justify-content: space-between;
+
+      :first-child {
+        width: 70%;
+      }
+
+      .MenuClose {
+        width: 8%;
+        padding-top: 2vh;
+      }
+    }
+
+    .MenuContent {
+      padding: 2%;
+      display: flex;
+      flex-direction: column;
+      font-size: 2rem;
+      text-transform: uppercase;
+      a {
+        padding: 2%;
+
+        &:active,
+        &:focus {
+          color: $orange;
+        }
+      }
+
+      .MenuPhoneNumber {
+        padding: 2%;
+        color: $orange;
+        display: flex;
+        .MenuPhoneImage {
+          padding: 2%;
+        }
+        .MenuPhoneText {
+          padding-left: 5%;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .Logo {
+    flex: 1 1 20%;
+
+    @include respond-to("large") {
+      flex: 1 1 24%;
+    }
+    @include respond-to("medium") {
+      flex: 1 1 26%;
+    }
+    @include respond-to("handle") {
+      max-width: 40%;
+    }
+  }
+
+  .MenuButton {
+    display: none;
+
+    &:active {
+      @include overscale(1.3);
+    }
+
+    @include respond-to("handle") {
+      display: block;
+      max-width: 5%;
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+
+  nav {
+    flex: 1 2 auto;
+
+    @include respond-to("handle") {
+      display: none;
+    }
+
+    ul[role="menu"] {
+      list-style-type: none;
+      letter-spacing: $header-menu-letter-spacing;
+      font-family: $header-menu-font-family;
+      font-size: $header-menu-font-size;
+
+      @include respond-to("large") {
+        font-size: $header-menu-font-size * 0.9;
+        letter-spacing: $header-menu-letter-spacing * 0.7;
+      }
+
+      @include respond-to("medium") {
+        font-size: $header-menu-font-size * 0.8;
+        letter-spacing: $header-menu-letter-spacing * 0.6;
+      }
+
+      text-align: center;
+    }
+
+    [role="menu"] {
+      display: flex;
+      flex-direction: row;
+      flex: 0 1 auto;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      text-transform: uppercase;
+
+      a:focus {
+        color: $orange;
+      }
+
+      [role="menuitem"] {
+        padding: 0%;
+      }
+    }
+  }
+
+  .PhoneNumber {
+    display: flex;
+    justify-content: center;
+    flex: 1 3 auto;
+    text-align: center;
+    font-family: $header-phone-font-family;
+    color: $header-phone-color;
+    letter-spacing: $header-phone-letter-spacing;
+    font-size: $header-phone-font-size * 0.8;
+
+    .PhoneImage {
+      float: left;
+    }
+
+    .PhoneText {
+      margin-left: 1rem;
+    }
+
+    @include respond-to("medium") {
+      font-size: $header-phone-font-size * 0.6;
+    }
+    @include respond-to("handle") {
+      display: none;
+    }
+  }
+
+  @include respond-to("handle") {
+    background: #fff;
+    padding: 4%;
+    width: auto;
+    max-height: $header-height;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @include respond-to("iPad") {
+    .Menu {
+      .MenuContent {
+        font-size: 1rem;
+      }
+    }
+  }
+}

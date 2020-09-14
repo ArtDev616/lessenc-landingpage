@@ -1,0 +1,16 @@
+@import "../shared";
+
+.Page {
+
+	> .SiteHeader,
+	> .SiteContent {
+		padding-left: 5%;
+		padding-right: 3%;
+
+		/// Logo mark too close to left, so padding left here
+		@include respond-to("medium") {
+			padding-left: 1%;
+		}
+	}
+
+}

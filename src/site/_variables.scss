@@ -1,0 +1,39 @@
+
+/// Z-indexes map, gathering all Z layers of the application
+/// @access private
+/// @type Map
+/// @prop {String} key - Break Point’s name
+/// @prop {Number} value - Break point's value as px mapped to the key
+$breakpoints: (
+    'iPhone6':  (max-width: 414px),
+    'iPad':     (max-width: 768px),
+    'handle':   (max-width: 1080px),
+    'medium':   (max-width: 1250px),
+    'large':    (max-width: 1500px),
+    'huge':     (max-width: 1700px),
+);
+
+/// Z-indexes map, gathering all Z layers of the application
+/// @access private
+/// @type Map
+/// @prop {String} key - Layer’s name
+/// @prop {Number} value - Z value mapped to the key
+$z-indexes: (
+    'front':    9999,
+    'over':     2,
+    'default':  1,
+    'below':    -1,
+);
+
+///page size...
+$page-width:            1932px;
+$page-height:           1044px;
+
+/// Linear Gradient Offset
+$gradoffset: 1880px;
+$gradoffsetop: 684px;
+
+/// Which side wouild paint
+$leftside:              0;
+$rightside:             1;
+

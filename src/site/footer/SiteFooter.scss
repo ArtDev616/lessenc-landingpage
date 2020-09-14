@@ -1,0 +1,163 @@
+@import "../../shared";
+
+.SiteFooter {
+  text-align: center;
+
+  .RequestMeeting {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1.5rem 0 2rem 0;
+    background-color: #f5f0e9;
+    font-family: Helvetica;
+    color: $gray-light;
+    font-size: 2rem;
+    color: $gray-normal;
+    line-height: 1;
+
+    button {
+      padding: 1.5rem;
+    }
+  }
+
+  .ContactUs {
+    background-color: $white;
+    color: $gray-darkest;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 1.5rem 2rem 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      @include remove();
+    }
+
+    a {
+      font-weight: normal;
+      color: $gray-light;
+      text-decoration: none;
+
+      &:hover {
+        color: black;
+        @include overscale(1.2);
+      }
+    }
+
+    figure {
+      margin: 10px 20px;
+      overflow: hidden;
+      figcaption {
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .Copyright {
+    background-color: $gray-darkest;
+    color: $gray-lightest;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 1.2rem 0 1.2rem 0;
+
+    .blank {
+      flex: 1 auto;
+      @include respond-to("handle") {
+        display: none;
+      }
+    }
+
+    label {
+      font-size: 1rem;
+    }
+  }
+
+  @include respond-to("handle") {
+    .RequestMeeting {
+      padding: 5% 10% 5% 10%;
+
+      h1 {
+        font-size: 4rem;
+        line-height: 1.5;
+      }
+
+      button {
+        font-size: 2.5rem;
+        padding: 4%;
+      }
+    }
+
+    .ContactUs {
+      width: none;
+      font-family: Helvetica;
+      font-size: 40px;
+      color: $gray-darkest;
+      letter-spacing: 0.3rem;
+      line-height: 4rem;
+      text-align: left;
+
+      flex-direction: column;
+
+      figure {
+        padding: 5%;
+      }
+    }
+
+    .Copyright {
+      text-align: center;
+      flex-direction: column-reverse;
+      justify-content: space-evenly;
+      padding: 5%;
+
+      label {
+        position: relative;
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  @include respond-to("iPad") {
+    .RequestMeeting {
+      h1 {
+        font-size: 2.5rem;
+      }
+      button {
+        font-size: 1.5rem;
+      }
+    }
+    .ContactUs {
+      font-size: 1.5rem;
+      letter-spacing: 0.2rem;
+      line-height: 2rem;
+    }
+    .Copyright {
+      label {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  @include respond-to("iPhone6") {
+    .RequestMeeting {
+      h1 {
+        font-size: 1.5rem;
+      }
+      button {
+        font-size: 1rem;
+      }
+    }
+
+    .ContactUs {
+      font-size: 1rem;
+      letter-spacing: 0.1rem;
+      line-height: 1rem;
+    }
+
+    .Copyright {
+      label {
+        font-size: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@import "../../shared";
+
+/// basic variables in Residential
+$home-gallery-h1-font-size: 2.4rem;
+$home-gallery-p-font-size: 0.8rem;
+$home-figcaption-h1-font-size: 3.2rem;
+$home-figcaption-p-font-size: 1.6rem;
+$home-fig-font-family: Helvetica;
+$home-fig-line-spacing: 4rem;
+$home-detail-img-width: 30rem;
+
+.ResidentialTimelinePage > .SiteContent {
+  margin: 0;
+  padding: 96px 0;
+  article {
+    position: relative;
+  }
+}

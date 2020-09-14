@@ -1,0 +1,622 @@
+@import "../../shared";
+
+/// basic variables in home
+$home-gallery-h1-font-size: 2.4rem;
+$home-gallery-p-font-size: 0.8rem;
+$home-figcaption-h1-font-size: 3.2rem;
+$home-figcaption-p-font-size: 1.6rem;
+$home-fig-font-family: Helvetica;
+$home-fig-line-spacing: 4rem;
+$home-detail-img-width: 30rem;
+
+.HomePage .SiteHeader {
+  color: $white;
+  position: absolute;
+  width: 95%;
+  height: 10%;
+}
+
+.HomePage .SiteContent {
+  padding: 0;
+  margin: 0;
+
+  figure {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+
+    &:nth-child(odd) figcaption {
+      color: inherit;
+      padding: 5% 20% 5% 5%;
+      left: 0;
+      right: auto;
+
+      @supports (
+        background-image: linear-gradient(70deg, white 0%, black 100%)
+      ) {
+        @include clipdraw($leftside);
+      }
+    }
+
+    &:nth-child(even) figcaption {
+      color: #fff;
+      padding: 5% 5% 5% 20%;
+      right: 0;
+      left: auto;
+
+      @supports (
+        background-image: linear-gradient(70deg, black 0%, white 100%)
+      ) {
+        @include clipdraw($rightside);
+      }
+
+      /// text over the background area, to fix this give padding left
+      @include respond-to("medium") {
+        padding-left: 23%;
+      }
+    }
+  }
+
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+
+    width: 50%;
+    height: auto !important;
+    position: absolute;
+    z-index: map-get($z-indexes, "default");
+    top: 0;
+    bottom: 0;
+    font-family: $home-fig-font-family;
+
+    h1 {
+      font-size: $home-figcaption-h1-font-size;
+      font-weight: 400;
+    }
+
+    p {
+      font-size: $home-figcaption-p-font-size;
+      line-height: 3rem;
+    }
+  }
+
+  /// Strech Gallery image to the screen area
+  .GalleryWidget .image-gallery-image img {
+    width: 100vw !important;
+    height: 100vh;
+    @include respond-to("medium") {
+      height: 80vh;
+    }
+  }
+
+  .GalleryPhotoCaption {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    width: 50%;
+    height: $page-height;
+    padding: 1% !important;
+    position: absolute;
+    z-index: map-get($map: $z-indexes, $key: "default");
+    top: 0;
+    bottom: 0;
+
+    .GalleryQuote {
+      margin-left: 3%;
+      margin-right: 15%;
+
+      h1 {
+        max-width: 85%;
+
+        @include respond-to("huge") {
+          max-width: 75%;
+        }
+
+        @include respond-to("large") {
+          max-width: 65%;
+        }
+      }
+
+      .InputQuote {
+        max-width: max-content;
+        max-height: max-content;
+        margin-bottom: 1rem;
+        position: relative;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        max-width: 80%;
+        border-radius: 10px;
+        box-shadow: -4px 7px 15px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+
+        @include respond-to("large") {
+          font-size: 0.8rem;
+        }
+
+        @include respond-to("medium") {
+          font-size: 0.7rem;
+        }
+
+        input {
+          border: none;
+          border-radius: 5px 0px 0px 5px;
+          padding-left: 3%;
+          flex-grow: 2;
+          font-size: inherit;
+          line-height: 1;
+
+          /// remove placeholder context
+          @include respond-to("medium") {
+            &::placeholder {
+              color: transparent;
+            }
+          }
+        }
+
+        button {
+          border: none;
+          border-radius: 0px 5px 5px 0px;
+          box-shadow: none;
+          padding: 1.5rem;
+          font-size: inherit;
+        }
+      }
+    }
+
+    .social {
+      width: 80%;
+      @include respond-to("large") {
+        width: 90%;
+      }
+
+      display: flex;
+      justify-content: center;
+      margin: 0 2rem 2rem 2rem;
+      padding-bottom: 5%;
+
+      img {
+        transition: all 750ms cubic-bezier(0.19, 1, 0.22, 1);
+        &:hover {
+          @include overscale(1.3);
+        }
+      }
+
+      .Trail {
+        display: flex;
+        justify-content: space-around;
+        width: 20vw;
+        img {
+          width: 2vw;
+        }
+      }
+    }
+  }
+
+  .HomePageConceptSection {
+    figcaption {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex-grow: 1;
+      max-width: max-content !important;
+
+      :last-child {
+        align-self: flex-end;
+      }
+    }
+
+    .render {
+      max-width: 70%;
+      padding: 5%;
+    }
+  }
+
+  /// living space image size is differnt from screen width, it needs strech to the screen with width 100%
+  .HomePageLivingSpacesSection {
+    img {
+      width: 100%;
+    }
+  }
+
+  .HomePageLittleDetailsSection {
+    /// it formed by three images and they are located their own position
+    .PhotoPanel {
+      width: 50%;
+      height: $page-height;
+      position: relative;
+
+      .Photo {
+        width: $home-detail-img-width;
+        box-shadow: 0 1.5rem 4rem rgba(black, 0.2);
+        position: absolute;
+      }
+
+      .Photo-1 {
+        left: 15%;
+        top: 8%;
+      }
+
+      .Photo-2 {
+        left: 10%;
+        top: 55%;
+      }
+
+      .Photo-3 {
+        left: 45%;
+        top: 25%;
+      }
+    }
+  }
+
+  .HomePageKitchenDetailsSection {
+    display: flex;
+
+    /// Kitchen image is used background image
+    .KitchenBackground {
+      width: 100%;
+      height: 100%;
+    }
+    /// here is overlay image as present markers. it will be disappear when mobile screen
+    .KitchenOverlay {
+      position: absolute;
+      left: 0%;
+      right: 0%;
+    }
+    /// in case of mobile screen, it will appear and overlay to persent markers.
+    .KitchenOverlayMobile {
+      @include remove;
+    }
+  }
+
+  /// in case of screen width less than 1700px
+  @include respond-to("huge") {
+    figcaption {
+      h1 {
+        font-size: $home-figcaption-h1-font-size * 0.8;
+      }
+
+      p {
+        font-size: $home-figcaption-p-font-size * 0.8;
+        line-height: 45px;
+      }
+    }
+
+    .GalleryQuote h1 {
+      font-size: $home-gallery-h1-font-size * 0.8;
+    }
+
+    .HomePageLittleDetailsSection .PhotoPanel {
+      height: $page-height * 0.8;
+      .Photo {
+        width: $home-detail-img-width * 0.8;
+      }
+    }
+  }
+  /// in case of screen width less than 1500px
+  @include respond-to("large") {
+    figcaption {
+      h1 {
+        font-size: $home-figcaption-h1-font-size * 0.7;
+      }
+    }
+
+    .GalleryQuote h1 {
+      font-size: $home-gallery-h1-font-size * 0.7;
+    }
+    /// set the image size in concept context such as compass and one more.
+    .HomePageConceptSection .figcaption img {
+      width: 4rem;
+    }
+    /// change the phonepanel area
+    .HomePageLittleDetailsSection .PhotoPanel {
+      height: $page-height * 0.7;
+      .Photo {
+        width: $home-detail-img-width * 0.7;
+      }
+    }
+  }
+  /// in case of screen width less than 1250px
+  @include respond-to("medium") {
+    figcaption {
+      h1 {
+        font-size: $home-figcaption-h1-font-size * 0.5;
+      }
+
+      p {
+        font-size: $home-figcaption-p-font-size * 0.7;
+        line-height: 40px;
+      }
+    }
+
+    .GalleryQuote h1 {
+      font-size: $home-gallery-h1-font-size * 0.6;
+    }
+    /// set the image size in concept context
+    .HomePageConceptSection .figcaption img {
+      width: 3rem;
+    }
+
+    .HomePageLittleDetailsSection .PhotoPanel {
+      height: $page-height * 0.6;
+      .Photo {
+        width: $home-detail-img-width * 0.6;
+      }
+    }
+  }
+  /// here, start mobile screen in case of screen width less than 1080px
+  @include respond-to("handle") {
+    /// reverse the order images and contexts
+    figure {
+      flex-direction: column-reverse;
+    }
+
+    figcaption {
+      padding: 10% !important;
+
+      h1 {
+        font-size: 65px;
+      }
+
+      p {
+        font-size: 2.5rem;
+        line-height: 2;
+      }
+    }
+
+    .GalleryPhotoCaption {
+      position: relative;
+      display: contents;
+      flex-direction: column-reverse;
+      width: 100%;
+      height: 100%;
+
+      .GalleryQuote {
+        margin: 0% 5% 10% 5%;
+
+        h1 {
+          padding: 5%;
+          margin: 0;
+          max-width: 100%;
+          font-size: 4rem;
+          color: #363637;
+          letter-spacing: 0.6px;
+          line-height: 10vh;
+          align-content: center;
+        }
+
+        .InputQuote {
+          align-self: center;
+          padding: 0%;
+          margin: 0%;
+          max-width: 100%;
+          font-size: 1.5rem;
+
+          input {
+            &::placeholder {
+              color: rgba(0, 0, 0, 0.4);
+            }
+            font-size: 2rem;
+          }
+
+          button {
+            padding: 5%;
+            width: fit-content;
+          }
+        }
+      }
+
+      .social {
+        width: 90%;
+        margin: 0%;
+        padding: 3% 0% 0% 0%;
+        justify-content: center;
+
+        .Trail {
+          img {
+            &:hover {
+              @include overscale(1);
+            }
+
+            &:active,
+            &:focus {
+              @include overscale(1.3);
+            }
+
+            width: 4vw;
+          }
+        }
+      }
+    }
+
+    /// Gallery image looks like too big with 100vh, so set 80vh
+    .GalleryWidget .image-gallery-image img {
+      height: 80vh;
+    }
+
+    .HomePageConceptSection .figcaption img {
+      width: 5rem;
+    }
+
+    .HomePageLivingSpacesSection img {
+      height: $page-height;
+    }
+
+    .HomePageConceptSection .render {
+      max-width: 100%;
+    }
+
+    .HomePageLittleDetailsSection .PhotoPanel {
+      height: $page-height;
+      .Photo {
+        width: $home-detail-img-width;
+      }
+
+      .Photo-1 {
+        left: -23%;
+        top: 8%;
+      }
+
+      .Photo-2 {
+        left: -25%;
+        top: 55%;
+      }
+
+      .Photo-3 {
+        left: 25%;
+        top: 25%;
+      }
+    }
+
+    /// focus to the number of the image, never miss the number and door
+    .HomePageLivingSpacesSection img {
+      height: $page-height;
+      object-fit: cover;
+      object-position: 72%;
+    }
+
+    /// focus some essential points.
+    .HomePageKitchenDetailsSection {
+      height: 1159px;
+
+      .KitchenBackground {
+        object-fit: cover;
+        object-position: 42%;
+      }
+
+      .KitchenOverlay {
+        display: none;
+      }
+
+      .KitchenOverlayMobile {
+        display: block;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        height: inherit;
+        object-fit: cover;
+      }
+    }
+  }
+
+  @include respond-to("iPad") {
+    .GalleryPhotoCaption .GalleryQuote h1 {
+      font-size: 2rem;
+      line-height: 1.5;
+    }
+
+    .GalleryPhotoCaption .GalleryQuote input {
+      &::placeholder {
+        color: rgba(0, 0, 0, 0.4);
+      }
+      font-size: 2rem;
+    }
+
+    figcaption {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 2rem;
+        line-height: 2;
+      }
+    }
+
+    .GalleryWidget .image-gallery-image img {
+      height: 60vh;
+    }
+
+    .HomePageConceptSection figcaption img {
+      width: 4rem;
+    }
+
+    .GalleryPhotoCaption .GalleryQuote .InputQuote {
+      font-size: 1rem;
+      button {
+        padding: 3%;
+      }
+      input {
+        font-size: 1.5rem;
+      }
+    }
+
+    .HomePageLivingSpacesSection img {
+      height: $page-height * 0.8;
+    }
+
+    .HomePageLittleDetailsSection .PhotoPanel {
+      height: $page-height * 0.8;
+    }
+
+    .HomePageKitchenDetailsSection {
+      height: 850px;
+      .KitchenBackground {
+        object-fit: cover;
+        object-position: 42%;
+      }
+
+      .KitchenOverlayMobile {
+        object-fit: cover;
+      }
+    }
+  }
+
+  @include respond-to("iPhone6") {
+    .GalleryPhotoCaption .GalleryQuote h1 {
+      font-size: 1.5rem;
+      line-height: 1.5;
+    }
+
+    figcaption {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 2;
+      }
+    }
+
+    .HomePageConceptSection figcaption img {
+      width: 2rem;
+    }
+
+    .GalleryPhotoCaption .GalleryQuote .InputQuote {
+      button {
+        padding: 3%;
+      }
+      input {
+        font-size: 0.5rem;
+      }
+    }
+
+    .HomePageLivingSpacesSection img {
+      height: $page-height * 0.5;
+    }
+
+    .HomePageLittleDetailsSection .PhotoPanel {
+      height: $page-height * 0.4;
+    }
+
+    .HomePageKitchenDetailsSection {
+      height: 450px;
+      .KitchenBackground {
+        object-fit: cover;
+        object-position: 42%;
+      }
+
+      .KitchenOverlayMobile {
+        object-fit: cover;
+      }
+    }
+  }
+}
